@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Paper Designer</string>
+    <string name="link">Enter the link here</string>
+    <string name="share">Share</string>
+    <string name="generate">Generate</string>
+    <string name="create">Create</string>
+    <string name="activity_name">Teacher Activity</string>
+    <string name="qrcode">Qr Generator</string>
+    <string name="create_qr_code">Create Qr Code</string>
+    <string name="who_is_using_this_app">Who is using this app</string>
+    <string name="Student">Student</string>
+    <string name="teacher">Teacher</string>
+    <string name="open_link">open Link</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="register_now">Register Now</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="or">Or</string>
+    <string name="already_have_account">Already have Account</string>
+    <string name="make_an_account">Make an Account</string>
+    <string name="login_now">Login Now</string>
+    <string name="login">logIn</string>
+    <string name="google">Login with Google</string>
+    <string name="google2">SignUp with Google</string>
+    <string name="logout">logOut</string>
+    <string name="let_s_make_ques_paper">Let\'s make Ques Paper</string>
+    <string name="enter_the_email">Enter the email</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="resetpassword">Reset Password</string>
+</resources>

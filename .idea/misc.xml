@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_login.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_answer_paper.xml" value="0.24861111111111112" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24861111111111112" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.21200408935546872" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24861111111111112" />
+        <entry key="app/src/main/res/layout/activity_qr_makker.xml" value="0.25465494791666665" />
+        <entry key="app/src/main/res/layout/activity_ques_paper_maker.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/activity_selector.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.3578125" />
+        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/layout/activity_student_scanner.xml" value="0.24861111111111112" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/xml/providder_path.xml" value="0.24791666666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

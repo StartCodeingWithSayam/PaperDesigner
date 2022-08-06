@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "506083109928",
+    "project_id": "papperdesigner-53ee8",
+    "storage_bucket": "papperdesigner-53ee8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506083109928:android:b985aa27601ff70a79d91d",
+        "android_client_info": {
+          "package_name": "com.sayam.papperdesigners"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506083109928-keu9hi7g6d9249uqqb8vf8rtcti8uach.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sayam.papperdesigners",
+            "certificate_hash": "ea215daffeea51f12c4420828879b2c266b0f846"
+          }
+        },
+        {
+          "client_id": "506083109928-0aqltp1bbackuvlnmq9s96o7d2se0ltf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNjd1ywbS_lt0cWfmd9efrHOeAIri2Gtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506083109928-0aqltp1bbackuvlnmq9s96o7d2se0ltf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
