@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class SelectorActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class SelectorActivity extends AppCompatActivity {
             finish();
         });
         findViewById(R.id.teacher).setOnClickListener(view -> {
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this, TeacherLoginActivity.class));
             finish();
         });
     }

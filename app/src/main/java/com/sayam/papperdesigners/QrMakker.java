@@ -1,12 +1,12 @@
 package com.sayam.papperdesigners;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,7 +20,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
@@ -62,10 +61,34 @@ public class QrMakker extends AppCompatActivity {
     }
 
     private void askPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
     }
 
     private void saveImage() {
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) qrImage.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        Uri uri = getImageToShare(bitmap);
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_STREAM,uri);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setType("image/*");
+        startActivity(Intent.createChooser(i,"Share Qr Code"));
+    }
 
+    private Uri getImageToShare(@NonNull Bitmap bitmap) {
+        File f = new File(getCacheDir(),"images");
+        Uri u;
+        try {
+            f.mkdir();
+            File file = new File(f,"shared_image.jpeg");
+            FileOutputStream outputStream =  new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            Toast.makeText(this, ""+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        }
+        u = FileProvider.getUriForFile(this,"com.sayam.papperdesigners",f);
+        return u;
     }
 }

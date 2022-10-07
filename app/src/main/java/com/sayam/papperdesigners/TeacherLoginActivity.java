@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class TeacherLoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     EditText email,password;
     TextView makeAccount,reset;
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         init();
         createRequest();
         makeAccount.setOnClickListener(view -> {
-            startActivity(new Intent(LoginActivity.this,SignInActivity.class));
+            startActivity(new Intent(TeacherLoginActivity.this,SignInActivity.class));
             finish();
         });
         login.setOnClickListener(v->{
@@ -62,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                        userModel.setUserId(users.getUid());
                        userModel.setUserName(users.getDisplayName());
                        userModel.setUserEmail(users.getEmail());
-                       database.getReference().child("Users")
+                       database.getReference().child("Schools")
                                .child(users.getUid()).setValue(userModel);
-                       startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                       startActivity(new Intent(TeacherLoginActivity.this, MainActivity.class));
                        finish();
                    }
                 });
@@ -94,9 +94,9 @@ public class LoginActivity extends AppCompatActivity {
                         userModel.setUserId(users.getUid());
                         userModel.setUserName(users.getDisplayName());
                         userModel.setUserEmail(users.getEmail());
-                        database.getReference().child("Users")
+                        database.getReference().child("Schools")
                                  .child(users.getUid()).setValue(userModel);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(TeacherLoginActivity.this, MainActivity.class));
                         finish();
                     }
                 });

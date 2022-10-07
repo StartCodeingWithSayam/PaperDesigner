@@ -25,9 +25,36 @@
         android:theme="@style/Theme.PaperDesigner"
         tools:targetApi="31">
         <activity
+            android:name=".SelectorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BusinessSigningActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BusinessLoginPageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ClientPageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
-
         <activity
             android:name=".AnswerPaper"
             android:exported="false" />
@@ -41,7 +68,7 @@
             android:name=".QuesPaperMaker"
             android:exported="false" />
         <activity
-            android:name=".SelectorActivity"
+            android:name=".MainSelector"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".TeacherLoginActivity"
             android:exported="true" />
         <activity
             android:name=".SignInActivity"

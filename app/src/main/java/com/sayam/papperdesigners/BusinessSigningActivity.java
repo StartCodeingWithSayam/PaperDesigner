@@ -1,17 +1,23 @@
 package com.sayam.papperdesigners;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-public class SignInActivity extends AppCompatActivity {
+public class BusinessSigningActivity extends AppCompatActivity {
     EditText name,email,password;
     Button register;
     TextView alreadyHaveAccount;
@@ -19,32 +25,35 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ProgressDialog dialog;
     String result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_bussness_signin);
+        getActionBar().hide();
         init();
         result = password.getText().toString();
         Encrypt(result);
-        alreadyHaveAccount.setOnClickListener(view -> startActivity(new Intent(SignInActivity.this, TeacherLoginActivity.class)));
+        alreadyHaveAccount.setOnClickListener(view -> startActivity(new Intent(this, TeacherLoginActivity.class)));
         register.setOnClickListener(v->{
             dialog.show();
             SignInWithEmailPassword();
         });
     }
+
     private void SignInWithEmailPassword(){
         auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(task -> {
             dialog.dismiss();
-           if (task.isSuccessful()){
-               UserModel userModel = new UserModel(
-                       name.getText().toString(),email.getText().toString(),result
-               );
-               String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
-               database.getReference().child("Schools").child(id).setValue(userModel);
-               Toast.makeText(this, "Account SignUp Successfully", Toast.LENGTH_SHORT).show();
-           }else{
-               Toast.makeText(this, Objects.requireNonNull(task.getException()).toString(),Toast.LENGTH_SHORT).show();
-           }
+            if (task.isSuccessful()){
+                UserModel userModel = new UserModel(
+                        name.getText().toString(),email.getText().toString(),result
+                );
+                String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
+                database.getReference().child("Organization").child(id).setValue(userModel);
+                Toast.makeText(this, "Account SignUp Successfully", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, Objects.requireNonNull(task.getException()).toString(),Toast.LENGTH_SHORT).show();
+            }
         });
     }
     private void Encrypt(String data){
@@ -67,16 +76,16 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
     private void init(){
-        name = findViewById(R.id.et_name);
-        email = findViewById(R.id.et_emailid);
-        password = findViewById(R.id.et_passwordid);
-        register = findViewById(R.id.btn_register);
+        name = findViewById(R.id.et_name_bs);
+        email = findViewById(R.id.et_emailId_bs);
+        password = findViewById(R.id.et_passwordId_bs);
+        register = findViewById(R.id.btn_register_bs);
         auth = FirebaseAuth.getInstance();
         dialog = new ProgressDialog(this);
         dialog.setTitle("SignUp");
         dialog.setMessage("We are SignIn you in..");
         database = FirebaseDatabase.getInstance();
-        alreadyHaveAccount = findViewById(R.id.already_have_account);
+        alreadyHaveAccount = findViewById(R.id.already_have_account_bs);
 
     }
 }

@@ -28,4 +28,8 @@
     <string name="enter_the_email">Enter the email</string>
     <string name="reset_password">Reset Password</string>
     <string name="resetpassword">Reset Password</string>
+    <string name="business">Business</string>
+    <string name="consumer">Consumer</string>
+    <string name="schools">Schools</string>
+    <string name="organization">Organization</string>
 </resources>

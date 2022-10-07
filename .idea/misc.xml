@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/google_bg.xml" value="0.2565" />
         <entry key="app/src/main/res/drawable/ic_login.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_answer_paper.xml" value="0.24861111111111112" />
@@ -11,7 +12,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24861111111111112" />
         <entry key="app/src/main/res/layout/activity_qr_makker.xml" value="0.25465494791666665" />
         <entry key="app/src/main/res/layout/activity_ques_paper_maker.xml" value="0.3729166666666667" />
-        <entry key="app/src/main/res/layout/activity_selector.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/activity_selector.xml" value="0.20899759928385409" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/layout/activity_student_scanner.xml" value="0.24861111111111112" />

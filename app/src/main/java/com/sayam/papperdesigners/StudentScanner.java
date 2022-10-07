@@ -6,6 +6,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,20 +25,23 @@ public class StudentScanner extends AppCompatActivity {
     CodeScanner scanner;
     Button openLink;
     TextView resultData;
+    LinearLayout ll;
+    String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_scanner);
         init();
-        scanner.setDecodeCallback(result -> {
+        scanner.setDecodeCallback(r-> {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    resultData.setText(result.toString());
+                    resultData.setText(r.toString());
+                    result = resultData.getText().toString();
                 }
             });
         });
-        String result = resultData.getText().toString();
+
         openLink.setOnClickListener(view -> {
             Intent i = new Intent(this,AnswerPaper.class);
             i.putExtra(MSG,result);
