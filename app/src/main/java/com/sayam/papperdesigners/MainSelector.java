@@ -17,14 +17,13 @@ public class MainSelector extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_selector);
-        getActionBar().hide();
         school = findViewById(R.id.school);
         school.setOnClickListener(view -> {
-            startActivity(new Intent(this,StudentScanner.class));
+            startActivity(new Intent(this,SelectorActivity.class));
             finish();
         });
         findViewById(R.id.organization).setOnClickListener(view -> {
-            startActivity(new Intent(this, TeacherLoginActivity.class));
+            startActivity(new Intent(this, ClientPageActivity.class));
             finish();
         });
 
