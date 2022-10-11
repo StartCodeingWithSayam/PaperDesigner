@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Paper Designer</string>
+    <string name="app_name">Survey Generator</string>
     <string name="link">Enter the link here</string>
     <string name="share">Share</string>
     <string name="generate">Generate</string>
