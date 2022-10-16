@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="23dp"
+        android:layout_margin="20dp"
         android:background="@drawable/layout_bg"
         android:orientation="vertical"
         android:gravity="center_vertical"
@@ -40,15 +40,15 @@
                 android:id="@+id/imageView2"
                 android:layout_width="165dp"
                 android:layout_height="281dp"
-                android:padding="23dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/bussness" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/busness" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView3"
                 android:layout_width="194dp"
+                android:scaleType="centerCrop"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/costummer" />
+                app:srcCompat="@drawable/costumer" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat

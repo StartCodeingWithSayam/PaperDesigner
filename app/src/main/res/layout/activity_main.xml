@@ -61,15 +61,12 @@
             android:layout_marginTop="109dp"
             android:text="@string/let_s_make_ques_paper"
             android:fontFamily="@font/cinzel_decorative_bold"
-            android:textColor="@color/white"
-            android:textSize="29sp"
+            android:textColor="@color/black"
+            android:textSize="39sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,32 +78,32 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.519">
+            app:layout_constraintVertical_bias="0.633">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_create"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="23dp"
-                android:fontFamily="@font/cinzel_decorative_bold"
-                android:background="@color/white"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="23dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
+                android:background="@color/white"
+                android:fontFamily="@font/cinzel_decorative_bold"
                 android:text="@string/create" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_generate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cinzel_decorative_bold"
                 android:layout_marginStart="23dp"
-                android:background="@color/white"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="23dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
+                android:background="@color/white"
+                android:fontFamily="@font/cinzel_decorative_bold"
                 android:text="@string/qrcode" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
