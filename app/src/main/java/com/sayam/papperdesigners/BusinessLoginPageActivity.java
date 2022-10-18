@@ -41,7 +41,6 @@ public class BusinessLoginPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bussnes_login_page);
-        getActionBar().hide();
         init();
         createRequest();
         makeAccount_bs.setOnClickListener(view -> {

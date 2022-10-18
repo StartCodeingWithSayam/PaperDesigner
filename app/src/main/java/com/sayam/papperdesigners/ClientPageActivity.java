@@ -12,7 +12,6 @@ public class ClientPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_page);
-        getActionBar().hide();
         init();
         business.setOnClickListener(view -> {
             startActivity(new Intent(this, BusinessLoginPageActivity.class));

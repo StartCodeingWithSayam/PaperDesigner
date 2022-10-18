@@ -30,7 +30,6 @@ public class BusinessSigningActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bussness_signin);
-        getActionBar().hide();
         init();
         result = password.getText().toString();
         Encrypt(result);
