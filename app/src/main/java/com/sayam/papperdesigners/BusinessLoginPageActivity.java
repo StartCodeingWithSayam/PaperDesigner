@@ -76,6 +76,7 @@ public class BusinessLoginPageActivity extends AppCompatActivity {
                 });
     }
 
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RC_SIGN_IN){
