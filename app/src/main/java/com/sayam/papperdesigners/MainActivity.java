@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.logout){
             auth.signOut();
-            startActivity(new Intent(MainActivity.this,SelectorActivity.class));
+            startActivity(new Intent(MainActivity.this,MainSelector.class));
             finish();
         }
         return super.onOptionsItemSelected(item);
