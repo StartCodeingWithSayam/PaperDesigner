@@ -32,7 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
                 android:layout_marginTop="2dp"
-                app:srcCompat="@drawable/register" />
+                android:scaleType="center"
+                app:srcCompat="@drawable/registernow" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView2"

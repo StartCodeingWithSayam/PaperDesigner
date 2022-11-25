@@ -38,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="111dp"
                     android:layout_marginTop="2dp"
+                    android:scaleType="center"
                     app:srcCompat="@drawable/login"
                     tools:ignore="ImageContrastCheck" />
 

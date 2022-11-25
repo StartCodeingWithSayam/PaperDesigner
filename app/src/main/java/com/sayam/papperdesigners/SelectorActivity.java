@@ -4,20 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class SelectorActivity extends AppCompatActivity {
-
+    Button teacher,student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selector);
-        findViewById(R.id.student).setOnClickListener(view -> {
-            startActivity(new Intent(this,StudentScanner.class));
+        student = findViewById(R.id.student);
+        teacher=findViewById(R.id.teacher);
+        student.setOnClickListener(view -> {
+            startActivity(new Intent(SelectorActivity.this,StudentScanner.class));
             finish();
         });
-        findViewById(R.id.teacher).setOnClickListener(view -> {
-            startActivity(new Intent(this, TeacherLoginActivity.class));
+        teacher.setOnClickListener(view -> {
+            startActivity(new Intent(SelectorActivity.this, TeacherLoginActivity.class));
             finish();
         });
     }

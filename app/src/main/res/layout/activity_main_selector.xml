@@ -49,11 +49,11 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="34dp"
+                android:layout_width="165dp"
+                android:padding="23dp"
+                android:layout_height="281dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/organization" />
+                app:srcCompat="@drawable/org" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
