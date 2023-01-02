@@ -9,14 +9,20 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class AnswerPaper extends AppCompatActivity {
     WebView view;
+    AdView adView;
     String url;
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer_paper);
+        adView = findViewById(R.id.adView);
+        adView.loadAd(new AdRequest.Builder().build());
         Intent intent = getIntent();
         url = intent.getStringExtra(StudentScanner.MSG);
         view = findViewById(R.id.view_web);

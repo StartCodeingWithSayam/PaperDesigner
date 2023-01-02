@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainSelector extends AppCompatActivity {
 
@@ -12,6 +13,8 @@ public class MainSelector extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_selector);
+        MobileAds.initialize(this, initializationStatus -> {
+        });
         school = findViewById(R.id.school);
         school.setOnClickListener(view -> {
             startActivity(new Intent(this,SelectorActivity.class));

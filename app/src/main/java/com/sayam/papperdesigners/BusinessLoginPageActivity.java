@@ -7,11 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,24 +43,95 @@ public class BusinessLoginPageActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase database_bs;
     ProgressDialog dialog;
-
+    AdView loginAdView;
+    InterstitialAd loginInterAd,googleInterAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bussnes_login_page);
         init();
+        AdRequest request = new AdRequest.Builder().build();
+        loginAdView.loadAd(request);
         createRequest();
         makeAccount_bs.setOnClickListener(view -> {
-            startActivity(new Intent(this,SignInActivity.class));
+            startActivity(new Intent(this, TeacherSignInActivity.class));
             finish();
         });
         login_bs.setOnClickListener(v->{
-            dialog.show();
-            LogInWithEmailPassword();
+            if (loginInterAd !=null)
+                loginInterAd.show(this);
+            else{
+                dialog.show();
+                LogInWithEmailPassword();
+            }
         });
-        google_bs.setOnClickListener(v-> signIn());
+        google_bs.setOnClickListener(v-> {
+            if (googleInterAd !=null) {
+                googleInterAd.show(this);
+            }
+            else
+                signIn();
+        });
         reset_bs.setOnClickListener(v->startActivity(new Intent(this,ForgotPassword.class)));
+
+        // Login InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                loginInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                loginInterAd = interstitialAd;
+                loginInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        Log.d(MainActivity.TAG, "onAdDismissedFullScreenContent: Closed");
+                        dialog.show();
+                        LogInWithEmailPassword();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        loginInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error: "+adError.getMessage());
+                    }
+                });
+            }
+        });
+
+
+        // Google InterAd
+
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                googleInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                googleInterAd = interstitialAd;
+                googleInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        Log.d(MainActivity.TAG,"onAdDismissedFullScreenContent : Dismissed");
+                        signIn();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        googleInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error: "+adError.getMessage());
+                    }
+                });
+            }
+        });
+
     }
 
     private void LogInWithEmailPassword(){
@@ -122,6 +201,7 @@ public class BusinessLoginPageActivity extends AppCompatActivity {
         client_bs = GoogleSignIn.getClient(this,gso);
     }
     private void init(){
+        loginAdView = findViewById(R.id.LoginAdView);
         email_bs = findViewById(R.id.et_emailId_bss);
         password_bs = findViewById(R.id.et_passwordId_bss);
         makeAccount_bs = findViewById(R.id.make_account_bs);

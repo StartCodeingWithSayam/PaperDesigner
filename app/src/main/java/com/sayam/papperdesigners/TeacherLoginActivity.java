@@ -39,7 +39,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
         init();
         createRequest();
         makeAccount.setOnClickListener(view -> {
-            startActivity(new Intent(TeacherLoginActivity.this,SignInActivity.class));
+            startActivity(new Intent(TeacherLoginActivity.this, TeacherSignInActivity.class));
             finish();
         });
         login.setOnClickListener(v->{

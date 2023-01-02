@@ -32,4 +32,8 @@
     <string name="consumer">Consumer</string>
     <string name="schools">Schools</string>
     <string name="organization">Organization</string>
+    <string name="AD_UNIT_ID">ca-app-pub-8645983386530902~3176788794</string>
+    <string name="BANNER_AD_UNIT_ID">ca-app-pub-8645983386530902/7845452032</string>
+    <string name="INTER_AD_UNIT_ID">ca-app-pub-8645983386530902/6476257944</string>
+
 </resources>

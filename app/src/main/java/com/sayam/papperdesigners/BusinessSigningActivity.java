@@ -1,15 +1,24 @@
 package com.sayam.papperdesigners;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,19 +34,55 @@ public class BusinessSigningActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ProgressDialog dialog;
     String result;
+    AdView signInAdView;
+    InterstitialAd signInInterAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bussness_signin);
         init();
+        AdRequest request = new AdRequest.Builder().build();
+        signInAdView.loadAd(request);
         result = password.getText().toString();
         Encrypt(result);
         alreadyHaveAccount.setOnClickListener(view -> startActivity(new Intent(this, TeacherLoginActivity.class)));
         register.setOnClickListener(v->{
-            dialog.show();
-            SignInWithEmailPassword();
+            if (signInInterAd !=null)
+                signInInterAd.show(this);
+            else {
+                dialog.show();
+                SignInWithEmailPassword();
+            }
         });
+        // Register InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                signInInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                 signInInterAd= interstitialAd;
+                signInInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        Log.d(MainActivity.TAG, "onAdDismissedFullScreenContent: Closed");
+                        dialog.show();
+                        SignInWithEmailPassword();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        signInInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error: "+adError.getMessage());
+                    }
+                });
+            }
+        });
+
     }
 
     private void SignInWithEmailPassword(){
@@ -75,6 +120,7 @@ public class BusinessSigningActivity extends AppCompatActivity {
         }
     }
     private void init(){
+        signInAdView = findViewById(R.id.TeacherSignInAdView);
         name = findViewById(R.id.et_name_bs);
         email = findViewById(R.id.et_emailId_bs);
         password = findViewById(R.id.et_passwordId_bs);

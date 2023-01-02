@@ -17,6 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,13 +35,16 @@ public class QrMakker extends AppCompatActivity {
     EditText link;
     ImageView qrImage;
     QRGEncoder encoder;
-
+    AdView qrAdview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_makker);
         link = findViewById(R.id.et_link);
         qrImage = findViewById(R.id.imgQr);
+        qrAdview = findViewById(R.id.qrAdView);
+        AdRequest request = new AdRequest.Builder().build();
+        qrAdview.loadAd(request);
         generate = findViewById(R.id.link_btn);
         share = findViewById(R.id.btn_share);
         generate.setOnClickListener(v -> {
@@ -58,6 +68,20 @@ public class QrMakker extends AppCompatActivity {
                 askPermission();
             }
         });
+
+
+        // Inter Ad for making qrCode
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+            }
+        });
     }
 
     private void askPermission() {
@@ -70,9 +94,8 @@ public class QrMakker extends AppCompatActivity {
         Uri uri = getImageToShare(bitmap);
         Intent i = new Intent(Intent.ACTION_SEND);
         i.putExtra(Intent.EXTRA_STREAM,uri);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setType("image/*");
-        startActivity(Intent.createChooser(i,"Share Qr Code"));
+        startActivity(Intent.createChooser(i,"Share Qr Code with..."));
     }
 
     private Uri getImageToShare(@NonNull Bitmap bitmap) {

@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class SelectorActivity extends AppCompatActivity {
-    Button teacher,student;
+    AppCompatButton teacher,student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
