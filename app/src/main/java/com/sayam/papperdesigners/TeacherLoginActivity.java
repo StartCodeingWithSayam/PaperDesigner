@@ -80,7 +80,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 startActivity(new Intent(this,ForgotPassword.class));
         });
         // google InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
@@ -105,7 +105,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
             }
         });
         // login InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
@@ -131,7 +131,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
             }
         });
         // reset InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
@@ -156,7 +156,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
             }
         });
         // make InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID)  , request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());

@@ -78,7 +78,7 @@ public class QrMakker extends AppCompatActivity {
 
 
         // Inter Ad for making qrCode
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 generateInterAd = null;
@@ -103,7 +103,7 @@ public class QrMakker extends AppCompatActivity {
             }
         });
         // share InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 shareInterAd = null;

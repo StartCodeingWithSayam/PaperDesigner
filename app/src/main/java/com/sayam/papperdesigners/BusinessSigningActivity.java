@@ -56,7 +56,7 @@ public class BusinessSigningActivity extends AppCompatActivity {
             }
         });
         // Register InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());

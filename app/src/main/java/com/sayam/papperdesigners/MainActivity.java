@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // inter Ads
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 mInterstitialAd = null;
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // InterAd 2
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/8691691433", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this,getString(R.string.INTER_AD_UNIT_ID), adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(TAG, "onAdFailedToLoad: Error "+loadAdError.getMessage());

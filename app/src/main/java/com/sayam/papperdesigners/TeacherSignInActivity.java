@@ -62,7 +62,7 @@ public class TeacherSignInActivity extends AppCompatActivity {
             }
         });
         // already InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 alreadyInterAd = null;
@@ -82,13 +82,14 @@ public class TeacherSignInActivity extends AppCompatActivity {
                     @Override
                     public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                         Log.d(MainActivity.TAG, "onAdFailedToLoad: Error " + adError.getMessage());
+                        alreadyInterAd = null;
                     }
                 });
             }
         });
 
         //  register InterAd
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.INTER_AD_UNIT_ID), request, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
