@@ -86,6 +86,7 @@ public class TeacherSignInActivity extends AppCompatActivity {
                 });
             }
         });
+
         //  register InterAd
         InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
             @Override
@@ -161,6 +162,5 @@ public class TeacherSignInActivity extends AppCompatActivity {
         dialog.setMessage("We are SignIn you in..");
         database = FirebaseDatabase.getInstance();
         alreadyHaveAccount = findViewById(R.id.already_have_account);
-
     }
 }

@@ -21,27 +21,30 @@
             android:layout_height="match_parent"
             android:layout_margin="12dp">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/imgQr"
                 android:layout_width="match_parent"
                 android:layout_height="410dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:src="@drawable/qrcode"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_link" />
+                app:layout_constraintTop_toBottomOf="@+id/et_link"
+                android:contentDescription="@string/qrcode" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="364dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:orientation="horizontal"
                 android:padding="12dp"
-                android:layout_margin="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/qrAdView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgQr">
+                app:layout_constraintTop_toBottomOf="@+id/imgQr"
+                app:layout_constraintVertical_bias="0.807">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/link_btn"
@@ -84,7 +87,7 @@
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/qrAdView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"

@@ -7,7 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.*;
+
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,23 +40,149 @@ public class TeacherLoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     ProgressDialog dialog;
+    AdView teacherAdView;
+    InterstitialAd googleInterAd,teacherLoginInterAd,resetInterAd,makeInterAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_teacher_login);
         init();
+        AdRequest request = new AdRequest.Builder().build();
+        teacherAdView.loadAd(request);
         createRequest();
         makeAccount.setOnClickListener(view -> {
-            startActivity(new Intent(TeacherLoginActivity.this, TeacherSignInActivity.class));
-            finish();
+            if (makeInterAd !=null)
+                makeInterAd.show(this);
+            else {
+                startActivity(new Intent(TeacherLoginActivity.this, TeacherSignInActivity.class));
+                finish();
+            }
         });
         login.setOnClickListener(v->{
-            dialog.show();
-            LogInWithEmailPassword();
+            if (teacherLoginInterAd !=null){
+                teacherLoginInterAd.show(this);
+            }else {
+                dialog.show();
+                LogInWithEmailPassword();
+            }
         });
-        google.setOnClickListener(v-> signIn());
-        reset.setOnClickListener(v->startActivity(new Intent(this,ForgotPassword.class)));
+        google.setOnClickListener(v-> {
+            if (googleInterAd !=null)
+                googleInterAd.show(this);
+            else
+                signIn();
+        });
+        reset.setOnClickListener(v->{
+            if (resetInterAd !=null)
+                resetInterAd.show(this);
+            else
+                startActivity(new Intent(this,ForgotPassword.class));
+        });
+        // google InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                googleInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                googleInterAd = interstitialAd;
+                googleInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        signIn();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        googleInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error for not in full screen");
+                    }
+                });
+            }
+        });
+        // login InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                teacherLoginInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                teacherLoginInterAd = interstitialAd;
+                teacherLoginInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        dialog.show();
+                        LogInWithEmailPassword();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        teacherLoginInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error for not in full screen");
+                    }
+                });
+            }
+        });
+        // reset InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                resetInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                resetInterAd = interstitialAd;
+                resetInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        startActivity(new Intent(TeacherLoginActivity.this,ForgotPassword.class));
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        resetInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error for not in full screen");
+                    }
+                });
+            }
+        });
+        // make InterAd
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Log.d(MainActivity.TAG, "onAdFailedToLoad: Error: "+loadAdError.getMessage());
+                makeInterAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                makeInterAd = interstitialAd;
+                makeInterAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        startActivity(new Intent(TeacherLoginActivity.this, TeacherSignInActivity.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                        makeInterAd = null;
+                        Log.d(MainActivity.TAG, "onAdFailedToShowFullScreenContent: Error for not in full screen");
+                    }
+                });
+            }
+        });
+
+
     }
     private void LogInWithEmailPassword(){
         auth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
@@ -115,6 +250,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
         client = GoogleSignIn.getClient(this,gso);
     }
     private void init(){
+        teacherAdView = findViewById(R.id.teacherAdView);
         email = findViewById(R.id.et_emailId);
         password = findViewById(R.id.et_passwordId);
         makeAccount = findViewById(R.id.make_account);
