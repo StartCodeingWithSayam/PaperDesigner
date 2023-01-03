@@ -37,20 +37,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView2"
-                android:layout_width="190dp"
-                android:layout_height="210dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="23dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/school" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView3"
-                android:layout_width="165dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="23dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/org" />

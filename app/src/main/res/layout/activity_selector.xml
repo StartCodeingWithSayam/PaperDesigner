@@ -37,21 +37,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
             android:padding="3dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView2"
-                android:layout_width="156dp"
-                android:layout_height="281dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="23dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/sam"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView3"
-                android:layout_width="194dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/adhiyapk" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
